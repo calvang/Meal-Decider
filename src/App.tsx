@@ -2,28 +2,11 @@ import React, { useState } from 'react';
 import logo from './resources/logo512.png';
 import './App.css';
 
-
-
-function ExistingMeals() {
-  return (
-    <>
-      
-    </>
-  );
-}
-
-function Main() {
-  return (
-    <>
-      
-    </>
-  );
-}
-
 function App() {
   let placeholder: Array<string> = []
   const [isOpen, setOpen] = useState(false);
   const [mealList, addMeal] = useState(placeholder);
+  const [inString, updateInput] = useState("");
 
   const meals = ["Breakfast", "Lunch", "Dinner"];
   var today = new Date();
@@ -34,6 +17,7 @@ function App() {
 
   const toggleOpen = () => setOpen(!isOpen);
   const addNewMeal = () => addMeal(mealList.concat(meals[0]));
+
   return (
     <div className="App">
       <header className="App-header">
@@ -44,7 +28,37 @@ function App() {
         </span>
       </header>
       <body>
-        <Main />
+        <button onClick={toggleOpen}>
+          <h3>Add a new meal</h3>
+        </button>
+        {
+          isOpen ?
+            <form style={{borderRadius: '5px'}}>
+              <button 
+                type="submit" 
+                style={{padding:'2px'}}
+                className="w3-button" 
+                onClick={addNewMeal}
+              ><i className="fa fa-plus-circle fa-fw w3-xlarge"></i></button>
+              <input type="text" className='search'
+                style={{marginTop: '10px', left: 0,borderRadius: '5px', outline:'none'}}
+                placeholder="Enter meal"
+                value={inString}
+                onChange={e => updateInput(e.target.value)}
+              />
+            </form>
+          :
+            <table>
+              <tbody>
+                {mealList.map(item => {
+                  return <tr>
+                    <td>Meal Name</td>
+                    <td>{item}</td>
+                  </tr>;
+                })}
+              </tbody>
+            </table>
+        }
       </body>
     </div>
   );
