@@ -3,17 +3,17 @@ import logo from './resources/logo512.png';
 import './App.css';
 
 function App() {
-  let placeholder: Array<string> = []
+  let placeholder: Array<string> = ["Hi"]
   const [isOpen, setOpen] = useState(false);
   const [mealList, addMeal] = useState(placeholder);
   const [inString, updateInput] = useState("");
 
   const meals = ["Breakfast", "Lunch", "Dinner"];
-  var today = new Date();
-  var meal = [{
-    name: meals[0],
-    created: today.getTime()
-  }];
+  // var today = new Date();
+  // var meal = [{
+  //   name: meals[0],
+  //   created: today.getTime()
+  // }];
 
   const toggleOpen = () => setOpen(!isOpen);
   const addNewMeal = () => addMeal(mealList.concat(meals[0]));
@@ -21,43 +21,49 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>Meal Decider</h1>
+        <div>
+          <img src={logo} className="App-logo" alt="logo" />
+          <span> Meal Decider</span>
+        </div>
         <span role="img" aria-label="Decorative Emojis">
-          ☕🥪🍝🍍
+            ☕🥪🍝🍍
         </span>
       </header>
-      <body>
-        <button onClick={toggleOpen}>
-          <h3>Add a new meal</h3>
-        </button>
+      <body className="App-body">
         {
           isOpen ?
             <form style={{borderRadius: '5px'}}>
-              <button 
-                type="submit" 
-                style={{padding:'2px'}}
-                className="w3-button" 
-                onClick={addNewMeal}
-              ><i className="fa fa-plus-circle fa-fw w3-xlarge"></i></button>
-              <input type="text" className='search'
-                style={{marginTop: '10px', left: 0,borderRadius: '5px', outline:'none'}}
+              <input type="text"
+                className="App-input"
+                style={{borderRadius: '5px', outline:'none'}}
                 placeholder="Enter meal"
                 value={inString}
                 onChange={e => updateInput(e.target.value)}
               />
+              <button 
+                type="submit"
+                className="w3-button"
+                onClick={addNewMeal}
+              ><i className="fa fa-plus-circle fa-fw w3-xlarge"></i></button>
             </form>
-          :
-            <table>
-              <tbody>
-                {mealList.map(item => {
-                  return <tr>
-                    <td>Meal Name</td>
-                    <td>{item}</td>
-                  </tr>;
-                })}
-              </tbody>
-            </table>
+            :
+            <>
+              <button
+                className="App-button w3-button w3-dark-gray"
+                onClick={toggleOpen}>
+                Add a new meal
+              </button>
+              <table className="App-table">
+                <tbody>
+                  {mealList.map(item => {
+                    return <tr>
+                      <td className="App-table-el">Meal Name</td>
+                      <td className="App-table-el">{item}</td>
+                    </tr>;
+                  })}
+                </tbody>
+              </table>
+            </>
         }
       </body>
     </div>
