@@ -15,3 +15,5 @@ To install dependencies, execute:
 To deploy to production, execute:
 `yarn build`
 This can be deployed to Chrome and other Chromium-based browsers by navigating to `chrome://extensions` and choosing to "Load unpacked." Simply drag and drop your build folder to deploy.
+
+To simply install, download the extension package (Not yet created).
