@@ -15,12 +15,3 @@ To install dependencies, execute:
 To deploy to production, execute:
 `yarn build`
 This can be deployed to Chrome and other Chromium-based browsers by navigating to `chrome://extensions` and choosing to "Load unpacked." Simply drag and drop your build folder to deploy.
-
-### Building from scratchcd 
-
-To build this from scratch, run:
-`yarn create react-app <appname> --template typescript`.
-
-Then, copy the manifest.json from this repository and replace the auto-generated one.
-
-Then, to avoid errors, prepend `INLINE_RUNTIME_CHUNK=false` to the build command in package.json. 
